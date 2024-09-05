@@ -1,14 +1,20 @@
-function binarySearch(search, values) {
+export function binarySearch(search, values, compareFunc) {
     let low = 0;
     let high = values.length - 1;
-    let mid;
+    let middle;
+
+    const defaultCompare = (a, b) => a - b;
+    const compare = compareFunc || defaultCompare;
+
     while (high >= low) {
-        let middle = Math.floor((high - low) / 2);
-        if (values[middle] == search) {
+        middle = Math.floor((high - low) / 2);
+        let comparison = compare(values[middle], search);
+
+        if (comparison === 0) {
             return middle;
         }
 
-        if (values[middle] > search) {
+        if (comparison > 0) {
             low = middle - 1;
         } else {
             high = middle + 1;
@@ -16,8 +22,3 @@ function binarySearch(search, values) {
     }
     return -1;
 }
-
-const values = [21, 22, 23, 25, 27, 28, 29, 31, 32, 34, 35];
-
-let index = binarySearch(25, values);
-console.log(`Tallet 25 fundet på index: ${index}`);
