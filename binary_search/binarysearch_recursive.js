@@ -7,21 +7,24 @@ function binarySearchRecursive(search, values, start, end, comparator) {
 
   // Tæl iterationer op hver gang funktionen kaldes
   iterations++;
-  console.log(`Number of iterations: ${iterations}`);
+  console.group(`Number of iterations: ${iterations}`);
 
   // Hvis starten er større end slutningen så findes elementet ikke
   if (start > end) {
+    console.groupEnd();
     return -1;
   }
 
   // Find midten af arrayet ved at halvere det selvfølgelig
   const middle = Math.floor((start + end) / 2);
+  console.log(`Start: ${start}, Middle: ${middle}, End: ${end}`);
 
   // Sammenlign elementet i midten med søgeværdien
   const comparison = compare(search, values[middle]);
 
   // Hvis elementet i midten er det vi leder efter så returner indexet
   if (comparison === 0) {
+    console.groupEnd();
     return middle;
   }
 
